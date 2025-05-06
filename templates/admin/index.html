@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Clientes</h2>
+<a href="{{ url_for('novo_cliente') }}" class="btn btn-primary mb-3">Novo Cliente</a>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.contato }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>
+                    <a href="{{ url_for('projetos_cliente', id=cliente.id) }}" class="btn btn-sm btn-info">Projetos</a>
+                    {% if not cliente.login %}
+                    <a href="{{ url_for('adicionar_senha_cliente', id=cliente.id) }}" class="btn btn-sm btn-warning">Add Senha</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

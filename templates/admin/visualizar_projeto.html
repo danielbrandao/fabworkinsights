@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ projeto.nome }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ projeto.nome }}</h2>
+
+<div class="ratio ratio-16x9">
+    <iframe src="{{ projeto.link_powerbi }}" frameborder="0" allowFullScreen="true"></iframe>
+</div>
+
+<a href="{{ url_for('projetos_cliente', id=projeto.cliente.id) }}" class="btn btn-secondary mt-3">Voltar</a>
+{% endblock %}
